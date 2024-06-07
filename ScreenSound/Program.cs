@@ -5,18 +5,26 @@ using ScreenSound.Modelos;
 
 try
 {
-    using var connection = new Connection().ObterConexao();
-    connection.Open();
-    Console.WriteLine(connection.State);
+    var artistaDAL = new ArtistaDAL();
+    artistaDAL.Adicionar(new Artista("Foo Fighters", "Foo Fighters é uma banda de rock alternativo americana formada por Dave Grohl em 1995."));
+
+    //var artistaPitty = new Artista("Pitty", "Priscilla Novaes Leone, mais conhecida como Pitty, é uma cantora, compositora, produtora, escritora e multi-instrumentista brasileira.") { Id = 1003 };
+
+
+    var listaArtistas = artistaDAL.Listar();
+
+    foreach (var artista in listaArtistas)
+    {
+        Console.WriteLine(artista);
+    }
 }
 catch (Exception ex)
 {
-    Console.WriteLine(ex.Message);
 
+    Console.WriteLine(ex.Message);
 }
 
 return;
-
 
 Artista ira = new Artista("Ira!", "Banda Ira!");
 Artista beatles = new("The Beatles", "Banda The Beatles");
@@ -64,7 +72,7 @@ void ExibirOpcoesDoMenu()
         Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
         menuASerExibido.Executar(artistasRegistrados);
         if (opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu();
-    } 
+    }
     else
     {
         Console.WriteLine("Opção inválida");

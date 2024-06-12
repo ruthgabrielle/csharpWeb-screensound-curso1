@@ -4,7 +4,7 @@ using ScreenSound.Modelos;
 using System;
 
 namespace ScreenSound.Banco;
-internal class ScreenSoundContext: DbContext
+public class ScreenSoundContext: DbContext
 {
 
     public DbSet<Artista> Artistas { get; set; }
